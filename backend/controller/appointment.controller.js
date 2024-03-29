@@ -68,3 +68,43 @@ export const postAppointment = asyncHandler(async (req, res, next) => {
             message:"Appointment sent successfully.."
         })
 })
+
+
+ export const getAllAppointments = asyncHandler(async(req,res,next)=>{
+    const appointments = await Appointment.find()
+    res.status(200)
+    .json({
+        success:true,
+        appointments
+    })
+})
+
+export const updateAppointmentStatus =asyncHandler(async (req,res,next)=>{
+    const {id} =req.params;
+    let appointment = await Appointment.findById(id)
+    if(!appointment)
+          return next(new error("Appointment not found",404))
+   appointment = await Appointment.findByIdAndUpdate(is,req.body,{
+    new:true,
+    runValidators:true,
+    useFindAndModify:false
+   })
+   res.status(200).json({
+    success:true,
+    appointment,
+    message:"Appointment status updated"
+   })
+})
+export const deleteAppointmentStatus =asyncHandler(async (req,res,next)=>{
+    const {id} =req.params;
+    let appointment = await Appointment.findById(id)
+    if(!appointment)
+          return next(new error("Appointment not found",404))
+   await  appointment.deleteOne()
+   
+   res.status(200).json({
+    success:true,
+ 
+    message:"Appointment deleted"
+   })
+})

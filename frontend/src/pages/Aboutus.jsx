@@ -1,10 +1,12 @@
 import React from 'react'
-
+import Hero from '../components/Hero'
+import Biography from '../components/Biography'
 const Aboutus = () => {
   return (
-    <div>
-      
-    </div>
+   <>
+   <Hero title={"Learn more about us | Geeta devi hospital"} imageUrl={'/about.png'} />
+   <Biography imageUrl={'/whoweare.png'}/>
+   </>
   )
 }
 

@@ -65,6 +65,7 @@ export const postAppointment = asyncHandler(async (req, res, next) => {
         })
         res.status(200).json({
             success:true,
+            appointment,
             message:"Appointment sent successfully.."
         })
 })

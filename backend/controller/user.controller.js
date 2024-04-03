@@ -7,7 +7,7 @@ import cloudinary from 'cloudinary'
 
 
 export const patientRegister = asyncHandler(async(req,res,next)=>{
-    const {firstName ,lastName,email,password,gender,dob,role,phone} =req.body
+    const {firstName ,lastName,email,password,gender,dob,phone} =req.body
     if(!(firstName && lastName && email && password && gender && dob  && phone))
     {
        
@@ -17,8 +17,8 @@ export const patientRegister = asyncHandler(async(req,res,next)=>{
     if(user){
         return next(new error("User already exist",400))
     }
-    user = await User.create({firstName,lastName,email,password,gender,dob,role:"patient",phone})
-   generateToken(user,"User Registered",200,res)
+    user = await User.create({firstName,lastName,email,password,gender,dob,role:"Patient",phone})
+   generateToken(user,"User Registered successfullly",200,res)
     
 })
 
